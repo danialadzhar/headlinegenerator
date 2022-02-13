@@ -13,16 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'HeadlineController@index');
-// Route::post('generate', 'HeadlineController@generate');
-// Route::get('result-headline', 'HeadlineController@result_headline');
-// Route::post('headline-store', 'HeadlineController@headline_store');
-Route::get('headline/create', 'HeadlineController@headline_create');
-
 Auth::routes();
 
-Route::get('home', 'HeadlineController@step_1')->name('home');
-Route::get('headline/fill-in', 'HeadlineController@step_2');
+Route::get('/', 'HeadlineController@index');
+Route::post('headline-store', 'HeadlineController@headline_store');
+Route::get('headline/create', 'HeadlineController@headline_create');
+
+Route::get('home', 'HomeController@index')->name('home');
+Route::get('headline/step-2', 'HeadlineController@step_2');
 Route::get('headline/result', 'HeadlineController@step_3');
 
 Route::post('headline/fill-in/next', 'HeadlineController@fill_in_step_2');

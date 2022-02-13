@@ -25,11 +25,6 @@ class HeadlineController extends Controller
         return redirect('login');
     }
 
-    public function step_1()
-    {
-        return view('home');
-    }
-
     public function step_2()
     {   
         $niche = Session::get('niche');
@@ -53,7 +48,7 @@ class HeadlineController extends Controller
     {   
         $niche = Session::put('niche', $request->business_category);
 
-        return redirect('headline/fill-in');
+        return redirect('headline/step-2');
     }
 
     public function fill_in_step_3(Request $request)

@@ -11,7 +11,7 @@
             <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ url('home') }}" class="text-decoration-none text-danger">Home</a></li>
-                    <li class="breadcrumb-item"><a href="{{ url('headline/fill-in') }}" class="text-decoration-none text-danger">Generate</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url('headline/step-2') }}" class="text-decoration-none text-danger">Generate</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Result</li>
                 </ol>
             </nav>
