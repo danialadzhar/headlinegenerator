@@ -11,6 +11,7 @@ class HeadlineController extends Controller
     public function index()
     {   
         // return view('copywriting');
+        
         return redirect('login');
     }
 
