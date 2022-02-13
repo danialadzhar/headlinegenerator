@@ -21,10 +21,10 @@ Route::get('headline/create', 'HeadlineController@headline_create');
 
 Auth::routes();
 
-Route::get('home', 'HomeController@step_1')->name('home');
-Route::get('headline/fill-in', 'HomeController@step_2');
-Route::get('headline/result', 'HomeController@step_3');
+Route::get('home', 'HeadlineController@step_1')->name('home');
+Route::get('headline/fill-in', 'HeadlineController@step_2');
+Route::get('headline/result', 'HeadlineController@step_3');
 
-Route::post('headline/fill-in/next', 'HomeController@fill_in_step_2');
-Route::post('headline/fill-in/blank', 'HomeController@fill_in_step_3');
+Route::post('headline/fill-in/next', 'HeadlineController@fill_in_step_2');
+Route::post('headline/fill-in/blank', 'HeadlineController@fill_in_step_3');
 

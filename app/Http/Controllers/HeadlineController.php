@@ -8,6 +8,16 @@ use App\Models\Headline;
 
 class HeadlineController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {   
         // return view('copywriting');
@@ -15,36 +25,50 @@ class HeadlineController extends Controller
         return redirect('login');
     }
 
-    public function result_headline(Request $request)
-    {   
-        $list_headline = Headline::all();
-
-        $niche = $request->session()->get('niche');
-        $target_market = $request->session()->get('target_market');
-        $masalah = $request->session()->get('masalah');
-        $solution = $request->session()->get('solution');
-
-        return view('result_headline', compact('niche', 'target_market', 'masalah', 'solution', 'list_headline'));
+    public function step_1()
+    {
+        return view('home');
     }
 
-    public function generate(Request $request)
+    public function step_2()
     {   
-        $niche = Session::put('niche', $request->niche);
+        $niche = Session::get('niche');
+
+        return view('headline.fill_in', compact('niche'));
+    }
+
+    public function step_3()
+    {
+        $list_headline = Headline::where('business_category', Session::get('niche'))->get();
+
+        $niche = Session::get('niche');
+        $target_market = Session::get('target_market');
+        $masalah = Session::get('masalah');
+        $solution = Session::get('solution');
+
+        return view('headline.list_headline', compact('niche', 'target_market', 'masalah', 'solution', 'list_headline'));
+    }
+
+    public function fill_in_step_2(Request $request)
+    {   
+        $niche = Session::put('niche', $request->business_category);
+
+        return redirect('headline/fill-in');
+    }
+
+    public function fill_in_step_3(Request $request)
+    {
+        $niche = Session::get('niche');
         $target_market = Session::put('target_market', $request->target_market);
         $masalah = Session::put('masalah', $request->masalah);
         $solution = Session::put('solution', $request->solution);
 
-        // $niche = $request->session()->put('niche', $request->niche);
-        // $target_market = $request->session()->put('target_market', $request->target_market);
-        // $masalah = $request->session()->put('masalah', $request->masalah);
-        // $solution = $request->session()->put('solution', $request->solution);
-
-        return redirect('result-headline')->with(['niche' => $request->niche, 'target_market' => $request->target_market, 'masalah' => $request->masalah, 'solution' => $request->solution]);
+        return redirect('headline/result')->with(['niche' => $niche, 'target_market' => $request->target_market, 'masalah' => $request->masalah, 'solution' => $request->solution]);
     }
 
     public function headline_create()
     {
-        return view('create');
+        return view('headline.create');
     }
 
     public function headline_store(Request $request)
