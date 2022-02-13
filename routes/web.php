@@ -28,3 +28,6 @@ Route::post('headline/fill-in/blank', 'HeadlineController@fill_in_step_3');
 
 Route::get('pending', 'HomeController@pending');
 
+Route::get('admin/list-headline', 'AdminController@list_headline');
+Route::post('admin/headline/update/{id}', 'AdminController@headline_update');
+

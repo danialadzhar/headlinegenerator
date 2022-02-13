@@ -48,7 +48,7 @@
               <hr>
               <p><a href="#" class="text-decoration-none text-dark"><i class="bi bi-arrow-right"></i> Subscriber</a></p>
               <p><a href="#" class="text-decoration-none text-dark"><i class="bi bi-arrow-right"></i> Report</a></p>
-              <a href="#" class="text-decoration-none text-dark"><i class="bi bi-arrow-right"></i> List Headline</a>
+              <a href="{{ url('admin/list-headline') }}" class="text-decoration-none text-dark"><i class="bi bi-arrow-right"></i> List Headline</a>
             </div>
         </div>
       </div>
