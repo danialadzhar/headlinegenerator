@@ -26,3 +26,5 @@ Route::get('headline/result', 'HeadlineController@step_3');
 Route::post('headline/fill-in/next', 'HeadlineController@fill_in_step_2');
 Route::post('headline/fill-in/blank', 'HeadlineController@fill_in_step_3');
 
+Route::get('pending', 'HomeController@pending');
+

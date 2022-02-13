@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Models\Headline;
+use Auth;
 
 class HeadlineController extends Controller
 {
@@ -63,6 +64,11 @@ class HeadlineController extends Controller
 
     public function headline_create()
     {
+        if (Auth::user()->role == 'member') 
+        {
+            return redirect('home');
+        }
+
         return view('headline.create');
     }
 

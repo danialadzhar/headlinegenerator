@@ -39,6 +39,53 @@
 
 @section('content')
 <div class="container">
+  @if (Auth::user()->role == 'admin')
+    <div class="row mt-3">
+      <div class="col-md-3">
+        <div class="card shadow" style="border-radius: 20px;">
+            <div class="card-body py-5 px-4">
+              <h6 class="mb-4">Hello {{ Auth::User()->name }}, <span class="text-danger">Good Morning!</span></h6>
+              <hr>
+              <p><a href="#" class="text-decoration-none text-dark"><i class="bi bi-arrow-right"></i> Subscriber</a></p>
+              <p><a href="#" class="text-decoration-none text-dark"><i class="bi bi-arrow-right"></i> Report</a></p>
+              <a href="#" class="text-decoration-none text-dark"><i class="bi bi-arrow-right"></i> List Headline</a>
+            </div>
+        </div>
+      </div>
+      <div class="col-md-9">
+          <div class="card shadow" style="border-radius: 20px;">
+              <div class="card-body py-5 px-4">
+                <form autocomplete="off" action="{{ url('headline/fill-in/next') }}" method="POST" class="needs-validation" novalidate>
+                  @csrf
+                  <div class="row">
+                      <div class="col-md-12">
+                          <h4>Headline Generator</h4>
+                          <p>Search your business category below and system will generate for you.</p>
+                      </div>
+                      <div class="col-md-12">
+                          <div class="mb-3 autocomplete">
+                              <input id="myInput" type="text" class="form-control" name="business_category" placeholder="Business Category" required>
+                          </div>
+                          <button type="submit" class="btn btn-baby-blue float-end hide-button-desktop">Find Now <i class="bi bi-arrow-right"></i></button>
+                          <div class="d-grid gap-2">
+                              <button type="submit" class="btn btn-baby-blue float-end hide-button-mobile">Find Now <i class="bi bi-arrow-right"></i></button>
+                          </div>
+                      </div>
+                  </div>
+                </form>
+              </div>
+          </div>
+        </div>
+        <div class="col-md-12 text-center mt-5">
+          <small class="text-center text-muted">All Right Reserved © {{ date('Y') }} Momentum Internet Sdn Bhd</small>
+        </div>
+    </div>
+  @else
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <h6>Hello {{ Auth::User()->name }}, <span class="text-danger">Good Morning!</span></h6>
+      </div>
+    </div>
     <form autocomplete="off" action="{{ url('headline/fill-in/next') }}" method="POST" class="needs-validation" novalidate>
         @csrf
         <div class="row mt-3 justify-content-center">
@@ -66,6 +113,7 @@
             <small class="text-center text-muted mt-5">All Right Reserved © {{ date('Y') }} Momentum Internet Sdn Bhd</small>
         </div>
     </form>
+  @endif
 </div>
 @endsection
 

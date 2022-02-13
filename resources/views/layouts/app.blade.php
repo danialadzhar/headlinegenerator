@@ -9,15 +9,6 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
-
-    <!-- Fonts -->
-    {{-- <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"> --}}
-
-    <!-- Styles -->
-    {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <style>
         .btn-baby-blue{
@@ -118,19 +109,28 @@
                         </form>
                     </h4>
                 </div>
-                <div class="col-md-3">
-                    <div class="row ">
-                        <div class="col-md-6">
-                            <a href="{{ url('headline/create') }}" class="btn btn-success float-end shadow hide-logout-desktop text-decoration-none" style="border-radius: 20px;">Create <i class="bi bi-plus"></i></a>
-                        </div>
-                        <div class="col-md-6">
-                            <form action="{{ route('logout') }}" method="POST">
-                                @csrf
-                                <button type="submit" class="btn btn-danger shadow hide-logout-desktop" style="border-radius: 20px;">Sign Out <i class="bi bi-box-arrow-right"></i></button>
-                            </form>
+                @if (Auth::user()->role == 'member')
+                    <div class="col-md-3">
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-danger float-end shadow hide-logout-desktop" style="border-radius: 20px;">Sign Out <i class="bi bi-box-arrow-right"></i></button>
+                        </form>
+                    </div>
+                @else
+                    <div class="col-md-3">
+                        <div class="row ">
+                            <div class="col-md-6">
+                                <a href="{{ url('headline/create') }}" class="btn btn-success float-end shadow hide-logout-desktop text-decoration-none" style="border-radius: 20px;">Create <i class="bi bi-plus"></i></a>
+                            </div>
+                            <div class="col-md-6">
+                                <form action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger shadow hide-logout-desktop" style="border-radius: 20px;">Sign Out <i class="bi bi-box-arrow-right"></i></button>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endif
             </div>
         </div>
 
