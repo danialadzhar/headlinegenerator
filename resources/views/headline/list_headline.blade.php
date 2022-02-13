@@ -28,19 +28,27 @@
             <div class="col-md-12">
                 <h1>Headline "{{ $niche }}"</h1>
             </div>
-            <div class="col-md-12">
-                <div class="row">
-                    @foreach ($list_headline as $value)
-                        <div class="col-md-4 mt-3">
-                            <div class="card shadow" style="border-radius: 20px;">
-                                <div class="card-body py-4 px-4">
-                                    <p>{!! str_replace(["[niche]", "[target_market]", "[masalah]", "[solution]"], ['<b class="text-danger">' . $niche . '</b>','<b class="text-danger">' . $target_market . '</b>','<b class="text-danger">' . $masalah . '</b>','<b class="text-danger">' . $solution . '</b>'], $value->headline) !!}</p>
+            @if ($list_headline->isEmpty())
+                <div class="col-md-12">
+                    <div class="alert alert-warning" role="alert">
+                        Sorry! No headline related with "{{ $niche }}"
+                    </div>
+                </div>
+            @else
+                <div class="col-md-12">
+                    <div class="row">
+                        @foreach ($list_headline as $value)
+                            <div class="col-md-4 mt-3">
+                                <div class="card shadow" style="border-radius: 20px;">
+                                    <div class="card-body py-4 px-4">
+                                        <p>{!! str_replace(["[niche]", "[target_market]", "[masalah]", "[solution]"], ['<b class="text-danger">' . $niche . '</b>','<b class="text-danger">' . $target_market . '</b>','<b class="text-danger">' . $masalah . '</b>','<b class="text-danger">' . $solution . '</b>'], $value->headline) !!}</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    </div>
                 </div>
-            </div>
+            @endif
         @endif
     </div>
 </div>
