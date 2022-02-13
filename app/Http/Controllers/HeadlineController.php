@@ -11,7 +11,7 @@ class HeadlineController extends Controller
     public function index()
     {   
         // return view('copywriting');
-        
+
         return redirect('login');
     }
 
@@ -51,8 +51,9 @@ class HeadlineController extends Controller
     {
         Headline::create([
             'headline' => $request->headline,
+            'business_category' => $request->business_category
         ]);
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'New headline added!');
     }
 }
